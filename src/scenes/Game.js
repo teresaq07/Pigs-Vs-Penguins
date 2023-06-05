@@ -1,4 +1,5 @@
 import Phaser  from "../lib/phaser.js";
+import {debugDraw} from "../utils/debug.js"
 
 export default class Game extends Phaser.Scene {
     /** @type {Phaser.Types.Input.Keyboard.CursorKeys} */
@@ -21,13 +22,8 @@ export default class Game extends Phaser.Scene {
         const wallsLayer = map.createLayer('walls', tileset);
 
         map.setCollisionByProperty({collides: true});
-
-        const debugGraphics = this.add.graphics().setAlpha(0.7);
-        wallsLayer.renderDebug(debugGraphics, {
-            tileColor: null,
-            collidingTileColor: new Phaser.Display.Color(240,240,40),
-            faceColor: new Phaser.Display.Color(40,40,40,255)
-        });
+        
+        //debugDraw(wallsLayer,this);
 
         this.faune = this.physics.add.sprite(128,128,'faune','walk-down-3.png');
 
@@ -42,10 +38,12 @@ export default class Game extends Phaser.Scene {
             repeat: -1,
             frameRate: 15
         });
-        
+
         this.faune.anims.play('faune-run-down');
 
         this.physics.add.collider(this.faune,wallsLayer);
+
+        this.cameras.main.startFollow(this.faune, true);
     }
 
     // t is total time, dt is time difference for frame
@@ -74,7 +72,8 @@ export default class Game extends Phaser.Scene {
         } 
         else
         {
-            this.faune.anims.play('faune-idle-down');
+            const parts = this.faune.anims.currentAnim.key.split('-');
+            this.faune.anims.play('faune-idle-' + parts[2]);
             this.faune.setVelocity(0,0);
         }
     }
