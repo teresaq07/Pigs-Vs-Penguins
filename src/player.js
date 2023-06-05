@@ -77,7 +77,7 @@ class Player {
 	private void setDamagePoints() { 
 		this.damagePoints = level * 30;
 	}
-	*/
+	
 
 	public void battle(Player player) {
 		player.currentHitPoints -= this.damagePoints;
@@ -120,6 +120,6 @@ class Player {
 				+ ", currentHitPoints=" + currentHitPoints + ", maxHitPoints=" + maxHitPoints + ", damagePoints="
 				+ damagePoints + "]";
 	}
-
+*/
 }
 
