@@ -1,8 +1,10 @@
+console.log("Hello World");
 
+/*
 function main () {
 
 }
-/*
+
 public static void main(String[] args) {
     //feel free to change the players’ names, but do not change anything else
     
