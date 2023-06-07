@@ -1,4 +1,5 @@
 import Phaser from "./lib/phaser.js"
+
 import Preloader from "./scenes/Preloader.js";
 import Game from "./scenes/Game.js"
 
@@ -10,8 +11,7 @@ export default new Phaser.Game({
 		default: 'arcade',
 		arcade: {
 			gravity: { y: 0 },
-            //debug: true
-            
+            debug: true            
 		}
 	},
     scene: [Preloader,Game],
